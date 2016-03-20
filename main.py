@@ -38,8 +38,8 @@ def main():
     jeu.plateau = []
     for i in range (1,69):
         jeu.plateau.append(str (i))
-    securite=[11,16,28,33,45,50,62,67]
-    depart=[5,22,39,56]
+    jeu.securite=[11,16,28,33,45,50,62,67]
+    jeu.depart=[5,22,39,56]
 
 
     # Boucle d'évènements
@@ -145,7 +145,6 @@ def menu():
     while (jeu.maxide > 12 or jeu.maxide < 6):
         jeu.maxide = obtenirInt("NON! La valeur possible est compris entre 6 et 12\n")
         print ("Le dé ira jusqu'a",jeu.maxide)
-
 
 
 if __name__ == '__main__': main()
