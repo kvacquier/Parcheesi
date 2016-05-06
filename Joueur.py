@@ -285,7 +285,7 @@ class Joueur():
     #entree: nb du de
     #sortie: case
     #recursivite
-    def debutTout (self, nbTour):
+    def debutTour (self, nbTour):
         global jeu
         tour = self.tour()
         if (tour):
