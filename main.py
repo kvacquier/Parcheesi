@@ -47,16 +47,16 @@ def main():
 
         #Bloucle De jeu
         afficher(screen)
-        if jeu.j1.tour() :
+        if jeu.j1.debutTour(0) :
             return
         afficher(screen)
-        if jeu.j2.tour() :
+        if jeu.j2.debutTour(0) :
             return
         afficher(screen)
-        if jeu.j3.tour() :
+        if jeu.j3.debutTour(0) :
             return
         afficher(screen)
-        if jeu.j4.tour() :
+        if jeu.j4.debutTour(0) :
             return
 
 

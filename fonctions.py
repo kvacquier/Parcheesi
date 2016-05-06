@@ -25,6 +25,9 @@ def NbduDe(maxi):
 
 
 
+
+
+
 #entrée: la valeur du dé, donc d'avancement du cheval et sa case de départ
 #sortie: la valeur de la case d'arrivée
 def CaseDarrivee(de,case):

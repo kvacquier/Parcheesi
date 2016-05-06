@@ -10,6 +10,7 @@ class Cheval():
     PlateauAdresse=[]
     CheminMaison=[]
     CaseMaison = 0
+    de=0
 
 
     def initPlateau(self):
@@ -240,9 +241,9 @@ class Joueur():
         if (self.Humain == False):
             return self.tourOrdi()
         else:
-            de = NbduDe(jeu.maxide)
-            print(self.Nom , "Vous avez fait : " , de , "\n")
-            if de == jeu.maxide and self.ChevauxEcurie != 0:
+            self.de = NbduDe(jeu.maxide)
+            print(self.Nom , "Vous avez fait : " , self.de , "\n")
+            if self.de == jeu.maxide and self.ChevauxEcurie != 0:
                 sortie = obtenirOuiNon('Voulez-vous sortir un cheval?\n')
                 if sortie :
                     self.sortirCheval()
@@ -254,17 +255,17 @@ class Joueur():
                 return False
             deplacer = obtenirInt('Quel cheval voulez-vous deplacer?\n')
             if deplacer == 1:
-                if self.Cheval1.mouvementpossible(de):
-                    self.Cheval1.deplacer(de)
+                if self.Cheval1.mouvementpossible(self.de):
+                    self.Cheval1.deplacer(self.de)
             if deplacer == 2:
-                if self.Cheval2.mouvementpossible(de):
-                    self.Cheval2.deplacer(de)
+                if self.Cheval2.mouvementpossible(self.de):
+                    self.Cheval2.deplacer(self.de)
             if deplacer == 3:
-                if self.Cheval3.mouvementpossible(de):
-                    self.Cheval3.deplacer(de)
+                if self.Cheval3.mouvementpossible(self.de):
+                    self.Cheval3.deplacer(self.de)
             if deplacer == 4:
-                if self.Cheval4.mouvementpossible(de):
-                    self.Cheval4.deplacer(de)
+                if self.Cheval4.mouvementpossible(self.de):
+                    self.Cheval4.deplacer(self.de)
 
             if self.Cheval1.EstIlGagnant() :
                 self.Points += 1
@@ -281,4 +282,14 @@ class Joueur():
             return False
         return False
 
-
+    #entree: nb du de
+    #sortie: case
+    #recursivite
+    def debutTout (self, nbTour):
+        global jeu
+        tour = self.tour()
+        if (tour):
+            return True
+        elif (self.de == jeu.maxide):
+            return self.debutTour(nbTour + 1)
+        return False
