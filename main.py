@@ -12,7 +12,7 @@ from fonctions import *
 def main():
     # Gestion des globales
 
-    global jeu
+    global Jeu
     # Reglage des parametres
     menu()
 
@@ -26,7 +26,6 @@ def main():
     jeu.background_image = pygame.image.load("background.png")
 
     # Definition des images des petits chevaux
-
     jeu.ImageChevalRouge = pygame.image.load("ChevalRouge.png")
     jeu.ImageChevalBleu = pygame.image.load("ChevalBleu.png")
     jeu.ImageChevalVert = pygame.image.load("ChevalVert.png")
@@ -105,7 +104,7 @@ def menu():
         print ("il y aura 3 autres participants virtuels.")
         jeu.j1.Nom = input("Comment vous appellez-vous?\n")
         jeu.j1.Humain = True
-        print ("bonjour",jeu.j1.Nom,"!")
+        print ("bonjour",jeu.j1.Nom,"!\nVous etes le joueur Jaune\n")
     elif (combienDeJoueur==2):
         print ("Il y aura deux autres jouers virtuels.")
         jeu.j1.Nom=input("J1 Comment vous appellez-vous?\n")
@@ -145,6 +144,5 @@ def menu():
     while (jeu.maxide > 12 or jeu.maxide < 6):
         jeu.maxide = obtenirInt("NON! La valeur possible est compris entre 6 et 12\n")
         print ("Le dé ira jusqu'a",jeu.maxide)
-
 
 if __name__ == '__main__': main()

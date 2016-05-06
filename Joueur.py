@@ -8,9 +8,9 @@ class Cheval():
     Depart=[]
     ListeMaison=[]
     PlateauAdresse=[]
+    CheminMaison=[]
     CaseMaison = 0
-    SurCheminMaison = False
-    Arrive = False
+
 
     def initPlateau(self):
         self.Depart.append(5)
@@ -24,14 +24,76 @@ class Cheval():
         self.ListeMaison.append(51)
 
         self.PlateauAdresse.append([250,250])
-        self.PlateauAdresse.append([310,487])
-        self.PlateauAdresse.append([310,465])
-        self.PlateauAdresse.append([310,443])
-        self.PlateauAdresse.append([310,421])
-        self.PlateauAdresse.append([310,398])
-        self.PlateauAdresse.append([310,376])
-        self.PlateauAdresse.append([310,354])
-        self.PlateauAdresse.append([310,332])
+        self.PlateauAdresse.append([304,483])
+        self.PlateauAdresse.append([304,462])
+        self.PlateauAdresse.append([304,443])
+        self.PlateauAdresse.append([304,417])
+        self.PlateauAdresse.append([304,390])
+        self.PlateauAdresse.append([304,376])
+        self.PlateauAdresse.append([304,352])
+        self.PlateauAdresse.append([304,325])
+        self.PlateauAdresse.append([330,306])
+        self.PlateauAdresse.append([351,309])
+        self.PlateauAdresse.append([372,309])
+        self.PlateauAdresse.append([393,309])
+        self.PlateauAdresse.append([418,309])
+        self.PlateauAdresse.append([439,309])
+        self.PlateauAdresse.append([462,309])
+        self.PlateauAdresse.append([484,309])
+        self.PlateauAdresse.append([484,250])
+        self.PlateauAdresse.append([484,185])
+        self.PlateauAdresse.append([467,186])
+        self.PlateauAdresse.append([440,186])
+        self.PlateauAdresse.append([412,186])
+        self.PlateauAdresse.append([397,186])
+        self.PlateauAdresse.append([370,186])
+        self.PlateauAdresse.append([352,186])
+        self.PlateauAdresse.append([330,186])
+        self.PlateauAdresse.append([302,168])
+        self.PlateauAdresse.append([302,142])
+        self.PlateauAdresse.append([302,122])
+        self.PlateauAdresse.append([302,99])
+        self.PlateauAdresse.append([302,77])
+        self.PlateauAdresse.append([302,54])
+        self.PlateauAdresse.append([302,32])
+        self.PlateauAdresse.append([302,9])
+        self.PlateauAdresse.append([250,9])
+        self.PlateauAdresse.append([185,9])
+        self.PlateauAdresse.append([185,32])
+        self.PlateauAdresse.append([185,54])
+        self.PlateauAdresse.append([185,78])
+        self.PlateauAdresse.append([185,97])
+        self.PlateauAdresse.append([185,120])
+        self.PlateauAdresse.append([185,144])
+        self.PlateauAdresse.append([185,168])
+        self.PlateauAdresse.append([169,186])
+        self.PlateauAdresse.append([145,186])
+        self.PlateauAdresse.append([123,186])
+        self.PlateauAdresse.append([100,186])
+        self.PlateauAdresse.append([78,186])
+        self.PlateauAdresse.append([52,186])
+        self.PlateauAdresse.append([34,186])
+        self.PlateauAdresse.append([8,186])
+        self.PlateauAdresse.append([8,247])
+        self.PlateauAdresse.append([8,309])
+        self.PlateauAdresse.append([34,309])
+        self.PlateauAdresse.append([55,309])
+        self.PlateauAdresse.append([77,309])
+        self.PlateauAdresse.append([100,309])
+        self.PlateauAdresse.append([123,309])
+        self.PlateauAdresse.append([145,309])
+        self.PlateauAdresse.append([169,309])
+        self.PlateauAdresse.append([188,330])
+        self.PlateauAdresse.append([188,352])
+        self.PlateauAdresse.append([188,375])
+        self.PlateauAdresse.append([188,397])
+        self.PlateauAdresse.append([188,419])
+        self.PlateauAdresse.append([188,442])
+        self.PlateauAdresse.append([188,465])
+        self.PlateauAdresse.append([188,485])
+        self.PlateauAdresse.append([250,485])
+
+
 
 
     def __init__(self, Couleur, Numero):
@@ -75,7 +137,7 @@ class Cheval():
         return
 
     def EstIlGagnant(self):
-        if self.SurCheminMaison and self.CaseMaison == 8 :
+        if self.CheminMaison and self.CaseMaison == 8 :
             self.Arrive = True
             return True
         return False
@@ -85,7 +147,7 @@ class Cheval():
         print("Cheval Sur Chemin Maison")
         self.Case = 0
         self.CaseMaison = 8
-        self.SurCheminMaison = True
+        self.CheminMaison = True
         return
 
     def AEntrerCheminMaison(self):
@@ -129,23 +191,22 @@ class Joueur():
         self.ChevauxEcurie -= 1
         return
 
-    def tour(self):
-        global jeu
-        if self.Humain == False:
-            return
-        de = NbduDe(jeu.maxide)
-        print(self.Nom , "Vous avez fait : " , de , "\n")
+    def tourOrdi(self):
+        import random
+        de = NbduDe(jeu.maxide1)
+        print(self.Nom , "L'ordi avez fait : " , de , "\n")
         if de == jeu.maxide and self.ChevauxEcurie != 0:
-            sortie = str(input('voulez-vous sortir un cheval?\n'))
-            if sortie == 'oui' :
+            sortie = random.randint(0,1)
+            if sortie :
                 self.sortirCheval()
                 return False
             else :
                 print("Vous n'avez pas fait sortir de cheval\n")
         if self.ChevauxEcurie == 4 :
-            print("Vous n'avez pas de chevaux dehors.\nFin du tour.\n")
+            print("L'ordi n'a pas de chevaux dehors.\nFin du tour.\n")
             return False
-        deplacer = obtenirInt('Quel cheval voulez-vous deplacer?\n')
+        deplacer = random.randint(1,4)
+        print("L'ordi veut deplacer le cheval " , deplacer , "\nFin du tour.\n")
         if deplacer == 1:
             if self.Cheval1.mouvementpossible(de):
                 self.Cheval1.deplacer(de)
@@ -169,7 +230,55 @@ class Joueur():
             self.Points += 1
 
         if self.Points == 4 :
-            print("BRAVO ! ", self.Nom, "Vous avez gagne !\nFin de la partie")
+            print("BRAVO ! ", self.Nom, "L'ordi a gagné !\nFin de la partie")
             return True
 
         return False
+
+    def tour(self):
+        global jeu
+        if (self.Humain == False):
+            return self.tourOrdi()
+        else:
+            de = NbduDe(jeu.maxide)
+            print(self.Nom , "Vous avez fait : " , de , "\n")
+            if de == jeu.maxide and self.ChevauxEcurie != 0:
+                sortie = obtenirOuiNon('Voulez-vous sortir un cheval?\n')
+                if sortie :
+                    self.sortirCheval()
+                    return False
+                else :
+                    print("Vous n'avez pas fait sortir de cheval\n")
+            if self.ChevauxEcurie == 4 :
+                print("Vous n'avez pas de chevaux dehors.\nFin du tour.\n")
+                return False
+            deplacer = obtenirInt('Quel cheval voulez-vous deplacer?\n')
+            if deplacer == 1:
+                if self.Cheval1.mouvementpossible(de):
+                    self.Cheval1.deplacer(de)
+            if deplacer == 2:
+                if self.Cheval2.mouvementpossible(de):
+                    self.Cheval2.deplacer(de)
+            if deplacer == 3:
+                if self.Cheval3.mouvementpossible(de):
+                    self.Cheval3.deplacer(de)
+            if deplacer == 4:
+                if self.Cheval4.mouvementpossible(de):
+                    self.Cheval4.deplacer(de)
+
+            if self.Cheval1.EstIlGagnant() :
+                self.Points += 1
+            if self.Cheval2.EstIlGagnant() :
+                self.Points += 1
+            if self.Cheval3.EstIlGagnant() :
+                self.Points += 1
+            if self.Cheval4.EstIlGagnant() :
+                self.Points += 1
+
+            if self.Points == 4 :
+                print("BRAVO ! ", self.Nom, "Vous avez gagne !\nFin de la partie")
+                return True
+            return False
+        return False
+
+

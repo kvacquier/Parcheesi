@@ -45,6 +45,9 @@ def PremierDepart(de,case,maxi):
 def position_cheval(case):
     return([10,10])
 
+#entrée:le texte a afficher pour demander au joueur un chiffre
+#sortie:la valeur du chiffre
+#fonction à utiliser quand on demande un chiffre aux joueurs
 def obtenirInt(question):
     resultat = None
     while resultat == None:
@@ -53,5 +56,21 @@ def obtenirInt(question):
             resultat = int(entree)
         except ValueError:
             print("Entrez un nombre SVP.")
+            resultat = None
+    return resultat
+
+#entrée:le texte a afficher pour demander au joueur un oui ou non
+#sortie:true = oui - false = non
+#fonction à utiliser quand on demande un oui/non aux joueurs
+def obtenirOuiNon(question):
+    resultat = None
+    while resultat == None:
+        entree = input(question)
+        if entree == "oui":
+            resultat = True
+        elif entree == "non" :
+            resultat = False
+        else:
+            print("Entrez oui ou non SVP.")
             resultat = None
     return resultat
