@@ -32,8 +32,6 @@ def main():
     jeu.ImageChevalJaune = pygame.image.load("ChevalJaune.png")
 
     # Remplir le plateau
-
-
     jeu.plateau = []
     for i in range (1,69):
         jeu.plateau.append(str (i))
@@ -71,18 +69,18 @@ def afficher(screen):
     screen.blit(jeu.ImageChevalJaune, jeu.j1.Cheval2.adresse())
     screen.blit(jeu.ImageChevalJaune, jeu.j1.Cheval3.adresse())
     screen.blit(jeu.ImageChevalJaune, jeu.j1.Cheval4.adresse())
-    screen.blit(jeu.ImageChevalRouge, jeu.j2.Cheval1.adresse())
-    screen.blit(jeu.ImageChevalRouge, jeu.j2.Cheval2.adresse())
-    screen.blit(jeu.ImageChevalRouge, jeu.j2.Cheval3.adresse())
-    screen.blit(jeu.ImageChevalRouge, jeu.j2.Cheval4.adresse())
+    screen.blit(jeu.ImageChevalVert, jeu.j2.Cheval1.adresse())
+    screen.blit(jeu.ImageChevalVert, jeu.j2.Cheval2.adresse())
+    screen.blit(jeu.ImageChevalVert, jeu.j2.Cheval3.adresse())
+    screen.blit(jeu.ImageChevalVert, jeu.j2.Cheval4.adresse())
     screen.blit(jeu.ImageChevalRouge, jeu.j3.Cheval1.adresse())
     screen.blit(jeu.ImageChevalRouge, jeu.j3.Cheval2.adresse())
     screen.blit(jeu.ImageChevalRouge, jeu.j3.Cheval3.adresse())
     screen.blit(jeu.ImageChevalRouge, jeu.j3.Cheval4.adresse())
-    screen.blit(jeu.ImageChevalRouge, jeu.j4.Cheval1.adresse())
-    screen.blit(jeu.ImageChevalRouge, jeu.j4.Cheval2.adresse())
-    screen.blit(jeu.ImageChevalRouge, jeu.j4.Cheval3.adresse())
-    screen.blit(jeu.ImageChevalRouge, jeu.j4.Cheval4.adresse())
+    screen.blit(jeu.ImageChevalBleu, jeu.j4.Cheval1.adresse())
+    screen.blit(jeu.ImageChevalBleu, jeu.j4.Cheval2.adresse())
+    screen.blit(jeu.ImageChevalBleu, jeu.j4.Cheval3.adresse())
+    screen.blit(jeu.ImageChevalBleu, jeu.j4.Cheval4.adresse())
 
 
     pygame.display.flip()
