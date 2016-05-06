@@ -196,7 +196,7 @@ class Joueur():
         de = NbduDe(jeu.maxide)
         print(self.Nom , "L'ordi avez fait : " , de , "\n")
         if de == jeu.maxide and self.ChevauxEcurie != 0:
-            sortie = random.randint(0,1)
+            sortie = True
             if sortie :
                 self.sortirCheval()
                 return False
