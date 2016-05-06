@@ -193,7 +193,7 @@ class Joueur():
 
     def tourOrdi(self):
         import random
-        de = NbduDe(jeu.maxide1)
+        de = NbduDe(jeu.maxide)
         print(self.Nom , "L'ordi avez fait : " , de , "\n")
         if de == jeu.maxide and self.ChevauxEcurie != 0:
             sortie = random.randint(0,1)
