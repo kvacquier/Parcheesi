@@ -59,7 +59,7 @@ def main():
         if jeu.j4.debutTour(0) :
             return
 
-
+#plateau et pions affiches
 def afficher(screen):
     # Affichage du Background
     global jeu

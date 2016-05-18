@@ -11,8 +11,9 @@ class Cheval():
     CheminMaison=[]
     CaseMaison = 0
     de=0
+    SurCheminMaison = False
 
-
+#Creation de plateau
     def initPlateau(self):
         self.Depart.append(5)
         self.Depart.append(22)
@@ -23,6 +24,40 @@ class Cheval():
         self.ListeMaison.append(17)
         self.ListeMaison.append(34)
         self.ListeMaison.append(51)
+
+        if self.Couleur == "Jaune":
+            self.CheminMaison.append([250,465])
+            self.CheminMaison.append([250,442])
+            self.CheminMaison.append([250,420])
+            self.CheminMaison.append([250,397])
+            self.CheminMaison.append([250,376])
+            self.CheminMaison.append([250,351])
+            self.CheminMaison.append([250,330])
+        elif self.Couleur == "Bleu":
+            self.CheminMaison.append([465,250])
+            self.CheminMaison.append([442,250])
+            self.CheminMaison.append([420,250])
+            self.CheminMaison.append([397,250])
+            self.CheminMaison.append([376,250])
+            self.CheminMaison.append([351,250])
+            self.CheminMaison.append([330,250])
+        elif self.Couleur == "Rouge":
+            self.CheminMaison.append([250,33])
+            self.CheminMaison.append([250,55])
+            self.CheminMaison.append([250,79])
+            self.CheminMaison.append([250,100])
+            self.CheminMaison.append([250,123])
+            self.CheminMaison.append([250,148])
+            self.CheminMaison.append([250,170])
+        elif self.Couleur == "Vert":
+            self.CheminMaison.append([33,250])
+            self.CheminMaison.append([55,250])
+            self.CheminMaison.append([79,250])
+            self.CheminMaison.append([100,250])
+            self.CheminMaison.append([123,250])
+            self.CheminMaison.append([148,250])
+            self.CheminMaison.append([170,250])
+
 
         self.PlateauAdresse.append([250,250])
         self.PlateauAdresse.append([304,483])
@@ -95,8 +130,6 @@ class Cheval():
         self.PlateauAdresse.append([250,485])
 
 
-
-
     def __init__(self, Couleur, Numero):
         self.Couleur = Couleur
         self.initPlateau()
@@ -125,30 +158,55 @@ class Cheval():
                 return([80,425])
             elif self.Couleur == "Bleu":
                 return([425,80])
+        elif self.CheminMaison == True:
+            return self.CheminMaison[self.CaseMaison]
         return (self.PlateauAdresse[self.Case])
 
     def mouvementpossible(self, nbDe):
+        if self.SurCheminMaison :
+            if self.de == self.CaseMaison + 1 :
+                return True
+            else :
+                return False
         return True
 #entrée: la valeur du dé
-#Sauve: la valeur de la case d'arrivée
+#Sortie: la valeur de case d'arrivée
     def deplacer(self, nbDe):
-        self.Case += nbDe
-        if (self.Case > 68) :
-            self.Case -= 68
+        if self.SurCheminMaison == True:
+            self.CaseMaison += 1
+            return
+        else :
+            x=0
+            # S'arreter a la case de chemin approprie
+            while (x!=nbDe):
+                self.Case += 1
+                if (self.Case > 68) :
+                    self.Case -= 68
+                if ((self.Couleur=='Jaune' and self.Case == self.ListeMaison[0])
+                    or (self.Couleur=='Bleu' and self.Case == self.ListeMaison[1])
+                    or (self.Couleur=='Rouge' and self.Case == self.ListeMaison[2])
+                    or (self.Couleur=='Vert' and self.Case == self.ListeMaison[3])) :
+                        self.EntrerCheminMaison()
+                        return
+                x += 1
+            return
         return
 
+#Un cheval gagnant
     def EstIlGagnant(self):
-        if self.CheminMaison and self.CaseMaison == 8 :
+        if self.SurCheminMaison and self.CaseMaison == 6 :
             self.Arrive = True
+            self.Case = 0
+            self.SurCheminMaison = False
             return True
         return False
 
-
+#Entrer dans le chemin maison
     def EntrerCheminMaison(self):
         print("Cheval Sur Chemin Maison")
         self.Case = 0
-        self.CaseMaison = 8
-        self.CheminMaison = True
+        self.CaseMaison = 0
+        self.SurCheminMaison = True
         return
 
     def AEntrerCheminMaison(self):
@@ -194,9 +252,9 @@ class Joueur():
 
     def tourOrdi(self):
         import random
-        de = NbduDe(jeu.maxide)
-        print(self.Nom , "L'ordi avez fait : " , de , "\n")
-        if de == jeu.maxide and self.ChevauxEcurie != 0:
+        self.de = NbduDe(jeu.maxide)
+        print(self.Nom , "L'ordi avez fait : " , self.de , "\n")
+        if self.de == jeu.maxide and self.ChevauxEcurie != 0:
             sortie = True
             if sortie :
                 self.sortirCheval()
@@ -209,17 +267,17 @@ class Joueur():
         deplacer = random.randint(1,4)
         print("L'ordi veut deplacer le cheval " , deplacer , "\nFin du tour.\n")
         if deplacer == 1:
-            if self.Cheval1.mouvementpossible(de):
-                self.Cheval1.deplacer(de)
+            if self.Cheval1.mouvementpossible(self.de):
+                self.Cheval1.deplacer(self.de)
         if deplacer == 2:
-            if self.Cheval2.mouvementpossible(de):
-                self.Cheval2.deplacer(de)
+            if self.Cheval2.mouvementpossible(self.de):
+                self.Cheval2.deplacer(self.de)
         if deplacer == 3:
-            if self.Cheval3.mouvementpossible(de):
-                self.Cheval3.deplacer(de)
+            if self.Cheval3.mouvementpossible(self.de):
+                self.Cheval3.deplacer(self.de)
         if deplacer == 4:
-            if self.Cheval4.mouvementpossible(de):
-                self.Cheval4.deplacer(de)
+            if self.Cheval4.mouvementpossible(self.de):
+                self.Cheval4.deplacer(self.de)
 
         if self.Cheval1.EstIlGagnant() :
             self.Points += 1
