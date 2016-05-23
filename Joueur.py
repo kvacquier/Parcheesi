@@ -158,7 +158,7 @@ class Cheval():
                 return([80,425])
             elif self.Couleur == "Bleu":
                 return([425,80])
-        elif self.CheminMaison == True:
+        elif self.SurCheminMaison == True:
             return self.CheminMaison[self.CaseMaison]
         return (self.PlateauAdresse[self.Case])
 
@@ -169,6 +169,7 @@ class Cheval():
             else :
                 return False
         return True
+
 #entrée: la valeur du dé
 #Sortie: la valeur de case d'arrivée
     def deplacer(self, nbDe):
@@ -260,7 +261,7 @@ class Joueur():
                 self.sortirCheval()
                 return False
             else :
-                print("Vous n'avez pas fait sortir de cheval\n")
+                print("Il n'a pas fait sortir de cheval\n")
         if self.ChevauxEcurie == 4 :
             print("L'ordi n'a pas de chevaux dehors.\nFin du tour.\n")
             return False
@@ -294,8 +295,10 @@ class Joueur():
 
         return False
 
+
     def tour(self):
         global jeu
+
         if (self.Humain == False):
             return self.tourOrdi()
         else:

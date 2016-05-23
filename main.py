@@ -7,7 +7,7 @@ import pygame
 from pygame.locals import *
 from fonctions import *
 
-# Fonction Principal
+# Fonction Principale
 
 def main():
     # Gestion des globales
